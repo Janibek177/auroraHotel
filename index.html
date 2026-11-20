@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Grand Hotel</title>
+    <link rel="icon" type="png/img" href="image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="screen-exterior" class="app-screen active">
+    <div class="exterior-content">
+        <button onclick="goToScene('screen-reception')" class="gold-btn glow-pulse">
+            <span>ENTER HOTEL</span>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+        <span class="enter-hint">Press [ ENTER ] Key</span>
+    </div>
+</section>
+
+<section id="screen-reception" class="app-screen">
+    <div class="container">
+        <div class="glass-card">
+            <div class="reception-grid">
+                <div class="concierge-avatar-box">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Concierge Alexander" class="concierge-img">
+                    <span class="concierge-title">Alexander — Head Concierge</span>
+                </div>
+                <div>
+                    <div class="speech-bubble">
+                        <div class="speech-bubble-tag">
+                            <span class="status-dot"></span>
+                            <span>Reception Concierge Desk</span>
+                        </div>
+                        <p class="speech-text">
+                            "Welcome to the Aurora Grand Hotel. I am Alexander, your personal concierge. We offer 10 curated luxury suites across our Left and Right corridor wings, complemented by our rooftop infinity pool, spa, and Michelin dining. Please choose a wing to select your room."
+                        </p>
+                    </div>
+                    <div class="reception-stats">
+                        <div class="stat-box">
+                            <span class="stat-label">Suites</span>
+                            <span class="stat-val">10 Rooms</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Wings</span>
+                            <span class="stat-val">Left & Right</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Rating</span>
+                            <span class="stat-val">★ 4.98</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-grid">
+            <div onclick="openCorridor('left')" class="interactive-card">
+                <div class="card-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                </div>
+                <h3 class="card-title">Left Wing Corridor</h3>
+                <p class="card-sub">Executive & Deluxe Suites (101 – 105)</p>
+                <span class="card-link">Enter Left Corridor &rarr;</span>
+            </div>
+
+            <div onclick="openCorridor('right')" class="interactive-card">
+                <div class="card-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                </div>
+                <h3 class="card-title">Right Wing Corridor</h3>
+                <p class="card-sub">Grand Suites & Penthouse (201 – 205)</p>
+                <span class="card-link">Enter Right Corridor &rarr;</span>
+            </div>
+
+            <div onclick="goToScene('screen-facilities')" class="interactive-card">
+                <div class="card-icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                </div>
+                <h3 class="card-title">Hotel Facilities</h3>
+                <p class="card-sub">Infinity Pool, Spa, Dining & Lounge</p>
+                <span class="card-link">Explore Facilities &rarr;</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="screen-corridor" class="app-screen">
+    <div class="container">
+        <div class="header-bar">
+            <div>
+                <span class="page-tag">Luxury Hallway Corridor</span>
+                <h2 id="corridor-title" class="page-title"></h2>
+            </div>
+            <button onclick="goToScene('screen-reception')" class="btn-outline">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                <span>Return to Lobby</span>
+            </button>
+        </div>
+
+        <div class="glass-card">
+            <div id="corridor-doors-grid" class="doors-grid"></div>
+        </div>
+    </div>
+</section>
+
+<section id="screen-room" class="app-screen">
+    <div class="container">
+        <div class="header-bar">
+            <button onclick="returnToCorridor()" class="btn-outline">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                <span>Back to Corridor</span>
+            </button>
+            <span id="room-wing-badge" class="page-tag"></span>
+        </div>
+
+        <div class="glass-card">
+            <div class="room-grid">
+                <div>
+                    <div class="main-photo-box">
+                        <img id="room-main-photo" src="" alt="Room Interior" class="main-photo">
+                    </div>
+                    <div class="thumb-grid">
+                        <button onclick="switchPhoto('bed')" class="thumb-btn">
+                            <img id="thumb-bed" src="" class="thumb-img">
+                            <span class="thumb-label">Bedroom</span>
+                        </button>
+                        <button onclick="switchPhoto('bath')" class="thumb-btn">
+                            <img id="thumb-bath" src="" class="thumb-img">
+                            <span class="thumb-label">Bathroom</span>
+                        </button>
+                        <button onclick="switchPhoto('view')" class="thumb-btn">
+                            <img id="thumb-view" src="" class="thumb-img">
+                            <span class="thumb-label">Suite View</span>
+                        </button>
+                    </div>
+
+                    <div class="amenities-box">
+                        <h4 class="section-sub">Suite Amenities & Services</h4>
+                        <div id="room-amenities" class="amenities-list"></div>
+                    </div>
+                </div>
+
+                <div class="room-details-side">
+                    <div>
+                        <h3 id="room-name" class="room-header-title"></h3>
+                        <div>
+                            <span id="room-price" class="price-tag"></span>
+                            <span class="price-sub">/ per night</span>
+                        </div>
+                        <p id="room-desc" class="room-desc-text"></p>
+
+                        <div class="specs-grid">
+                            <div>
+                                <span class="spec-item-label">Suite Size</span>
+                                <span id="room-size" class="spec-item-val"></span>
+                            </div>
+                            <div>
+                                <span class="spec-item-label">Bed Spec</span>
+                                <span id="room-bed" class="spec-item-val"></span>
+                            </div>
+                            <div>
+                                <span class="spec-item-label">Capacity</span>
+                                <span id="room-guests-cap" class="spec-item-val"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form onsubmit="processBooking(event)" class="booking-form">
+                        <h4 class="section-sub">Instant Reservation</h4>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Guest Full Name</label>
+                            <input type="text" id="book-name" required placeholder="e.g. Lord Sterling" class="form-input">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Check-in Date</label>
+                                <input type="date" id="book-date" required class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nights</label>
+                                <input type="number" id="book-nights" min="1" max="30" value="1" onchange="calculateTotal()" onkeyup="calculateTotal()" required class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="total-price-box">
+                            <span class="form-label">Total Booking Price:</span>
+                            <span id="book-total" class="total-val">$0</span>
+                        </div>
+
+                        <button type="submit" class="gold-btn" style="width: 100%; border-radius: 0.85rem; padding: 0.9rem;">
+                            Confirm & Reserve Suite
+                        </button>
+                    </form>
+
+                    <div id="booking-success" class="success-box hidden">
+                        <div class="success-title">✓ Booking Confirmed & Guaranteed</div>
+                        <div id="booking-success-details" class="success-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="screen-facilities" class="app-screen">
+    <div class="container">
+        <div class="glass-card">
+            <div class="header-bar">
+                <div>
+                    <span class="page-tag">Luxury Amenities</span>
+                    <h2 class="page-title">Hotel Facilities & Wellness</h2>
+                </div>
+                <button onclick="goToScene('screen-reception')" class="btn-outline">
+                    Back to Lobby
+                </button>
+            </div>
+
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80" alt="Infinity Pool" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">Skyline Infinity Pool</h3>
+                        <p class="facility-desc">Heated rooftop pool with panoramic skyline views, private cabanas, and signature cocktail service.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Spa & Sauna" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">Serenity Royal Spa</h3>
+                        <p class="facility-desc">Finnish cedar sauna, holistic aromatherapy massages, and private marble hydrotherapy plunge tubs.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Fine Dining" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">Michelin-Starred Dining</h3>
+                        <p class="facility-desc">Exquisite multi-course tasting menus prepared by world-class chefs with vintage wine pairing.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80" alt="Sky Lounge" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">Rooftop Sky Lounge</h3>
+                        <p class="facility-desc">Craft cocktails, live ambient lounge music, and outdoor fire pits overlooking the city lights.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Fitness Studio" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">24/7 Elite Health Club</h3>
+                        <p class="facility-desc">Technogym cardio equipment, free weights, personal training sessions, and juice lounge bar.</p>
+                    </div>
+                </div>
+
+                <div class="facility-card">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Concierge Service" class="facility-img">
+                    <div>
+                        <h3 class="facility-name">24/7 Concierge & Valet</h3>
+                        <p class="facility-desc">Private airport chauffeur transfers, luxury yacht bookings, and round-the-clock room service.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="goToScene('screen-reception')" class="gold-btn" style="width: 100%;">
+                Return to Reception Desk
+            </button>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
